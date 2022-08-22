@@ -18,4 +18,11 @@ public class Start {
     Connection conn = DriverManager.getConnection("jdbc:derby:memory:myDB;create=true", "login", "");
   }
 
+  private static void anotherVulnerableCode() {
+    var regex = "/^([a-zA-Z0-9])(([\\-.]|[_]+)?([a-zA-Z0-9]+))*(@){1}[a-z0-9]+[.]{1}(([a-z]{2,3})|([a-z]{2,3}[.]{1}[a-z]{2,3}))$/";
+    if (!"some phrase".matches(regex)){
+      throw new Error("Invalid mail format");
+    }
+  }
+
 }
