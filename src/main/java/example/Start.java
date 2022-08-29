@@ -1,7 +1,5 @@
 package example;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Start {
@@ -15,13 +13,20 @@ public class Start {
   }
 
   private static void doVulnerableCode() throws SQLException {
-    Connection conn = DriverManager.getConnection("jdbc:derby:memory:myDB;create=true", "login", "");
+    new Vulnerable().vulnerable();
   }
 
   private static void anotherVulnerableCode() {
     var regex = "/^([a-zA-Z0-9])(([\\-.]|[_]+)?([a-zA-Z0-9]+))*(@){1}[a-z0-9]+[.]{1}(([a-z]{2,3})|([a-z]{2,3}[.]{1}[a-z]{2,3}))$/";
     if (!"some phrase".matches(regex)){
       throw new Error("Invalid mail format");
+    }
+  }
+
+  private static void moreVulnerableCode() {
+    var regex = "/^([a-zA-Z0-9])(([\\-.]|[_]+)?([a-zA-Z0-9]+))*(@){1}[a-z0-9]+[.]{1}(([a-z]{2,3})|([a-z]{2,3}[.]{1}[a-z]{2,3}))$/";
+    if (!"some phrase test".matches(regex)){
+      throw new Error("Invalid e-mail format");
     }
   }
 
