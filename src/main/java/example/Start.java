@@ -18,16 +18,22 @@ public class Start {
     DriverManager.getConnection("jdbc:derby:memory:myDB;create=true", "login", "");
   }
 
-  private static void doVulnerableCode(String output) throws SQLException {
-
-    Connection conn = DriverManager.getConnection("jdbc:derby:memory:myDB;create=true", "login", "");
-    System.out.println(output);
-  }
-
   private static void doVulnerableCode(boolean bool) throws SQLException {
     if (bool) {
       DriverManager.getConnection("jdbc:derby:memory:myDB;create=true", "login", "");
     }
+  }
+
+  private static void doVulnerableCode(boolean bool, String output) throws SQLException {
+    if (bool && output.equals("test")) {
+      DriverManager.getConnection("jdbc:derby:memory:myDB;create=true", "login", "");
+    }
+  }
+
+  private static void doVulnerableCode(String output) throws SQLException {
+
+    Connection conn = DriverManager.getConnection("jdbc:derby:memory:myDB;create=true", "login", "");
+    System.out.println(output);
   }
 
 
