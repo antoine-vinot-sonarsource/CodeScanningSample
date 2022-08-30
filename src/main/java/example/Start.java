@@ -1,5 +1,6 @@
 package example;
 
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Start {
@@ -14,6 +15,14 @@ public class Start {
 
   private static void doVulnerableCode() throws SQLException {
     new Vulnerable().vulnerable();
+  }
+
+  private static void doVulnerableCode(String output) {
+    try {
+      DriverManager.getConnection("jdbc:derby:memory:myDB;create=true", "login", "");
+    } catch (SQLException e) {
+      throw new RuntimeException(output + " " + e);
+    }
   }
 
   private static void anotherVulnerableCode() {
